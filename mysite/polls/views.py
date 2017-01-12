@@ -5,6 +5,8 @@ from django.urls import reverse
 
 
 def index(request):
+    #this function shows the latest questions made by the users and displays the last 5
+    #returns the render view of the index view with the questions from the  db
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {
         'latest_question_list': latest_question_list
@@ -13,6 +15,7 @@ def index(request):
 
 
 def detail(request, question_id):
+    #shows the details of
     question = get_object_or_404(Question,pk=question_id)
     return render(request, 'polls/detail.html', {'question': question})
 
@@ -31,13 +34,15 @@ def vote(request, question_id):
         return render(request, 'polls/details.html', {'question': question,
                                                       'error_message': "You didn't select a choice"})
     else:
-        selected_choice += 1
+        selected_choice.votes += 1
         selected_choice.save()
         #always returning an HttpresponseRedirect after successfully dealing with Post date
         #This prevents data from being posted twice if the user hits the back button
 
-        return HttpResponseRedirect(reverse("polls:results", args=(question_id)))
+        return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
 
 
-def results(re)
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {'question': question})
 
