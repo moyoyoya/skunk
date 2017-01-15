@@ -1,17 +1,14 @@
-{% load staticfiles %}
-< !DOCTYPE html>
-<html>
-    <head>
-        <title>{% block title %} {% end block %} </title>
-        <link href="{ static 'css/base.css' }" rel="stylesheet">
-    </head>
-    <body>
-        <div id="header">
-            <span class="logo">Affiliates</span>
-        </div>
-        <div id="content">
-            {% block content %}
-            {% end block %}
-        </div>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+    <h1>Log-in</h1>
+    <p>Welcome to Linio's affiliates program page</p>
+    <p>Please use the following form to log-in</p>
+    <form action="." method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="log-in"></p>
+    </form>
+{% endblock %}
