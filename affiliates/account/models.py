@@ -7,13 +7,14 @@ from django_countries.fields import CountryField
 import datetime
 # Create your models here.
 
-
+"""
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=200)
     affiliate_id = models.AutoField(unique=True)
     address = models.CharField(max_length=200)
     country = CountryField()
+
 
 class Relation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -32,7 +33,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
     instance.relation.save()
-
+"""
 
 
 
