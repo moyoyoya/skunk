@@ -7,21 +7,28 @@ from django_countries.fields import CountryField
 import datetime
 # Create your models here.
 
-"""
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=200)
-    affiliate_id = models.AutoField(unique=True)
+    affiliate_id = models.IntegerField( unique=True)
     address = models.CharField(max_length=200)
     country = CountryField()
+    is_active = models.BooleanField(default=True)
+    active_mex = models.BooleanField(default=False)
+    active_col = models.BooleanField(default=False)
+    active_arg = models.BooleanField(default=False)
+    active_per = models.BooleanField(default=False)
+    active_chl = models.BooleanField(default=False)
+    active_pan = models.BooleanField(default=False)
+    active_ven = models.BooleanField(default=False)
 
 
 class Relation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    relationship = CountryField()
-    ad_space = models.AutoField(max_length=5, unique=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    ad_space = models.IntegerField(unique=True)
 
-
+"""
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -33,8 +40,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
     instance.relation.save()
+
 """
-
-
-
 

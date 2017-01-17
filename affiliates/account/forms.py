@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-# from .models import Profile, Relation
+from .models import Profile, Relation
 
 
 class LoginForm(forms.Form):
@@ -14,7 +14,7 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('username', 'first_name', 'last_name', 'email', )
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -22,7 +22,7 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords don\'t match")
         return cd['password2']
 
-"""
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -32,5 +32,10 @@ class ProfileForm(forms.ModelForm):
 class RelationForm(forms.ModelForm):
     class Meta:
         model = Relation
-        fields = ('relationship',)
-"""
+        fields = ('ad_space',)
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
