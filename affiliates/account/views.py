@@ -52,10 +52,12 @@ def register(request):
 def edit(request):
     if request.method == 'POST':
         user_form = UserForm(instance=request.user, data=request.POST)
-        profile_form = ProfileForm(instance=request.user, data=request.POST, files=request.FILES)
+        profile_form = ProfileForm(instance=request.user.profile, data=request.POST, files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+        else:
+            print 'taco'
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
