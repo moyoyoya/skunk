@@ -11,7 +11,7 @@ import datetime
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=200)
-    affiliate_id = models.IntegerField( unique=True)
+    affiliate_id = models.IntegerField(null=True)
     address = models.CharField(max_length=200)
     country = CountryField()
     is_active = models.BooleanField(default=True)

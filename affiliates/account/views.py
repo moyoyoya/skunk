@@ -53,11 +53,9 @@ def edit(request):
     if request.method == 'POST':
         user_form = UserForm(instance=request.user, data=request.POST)
         profile_form = ProfileForm(instance=request.user, data=request.POST, files=request.FILES)
-        relation_form = RelationForm(instance=request.user, data=request.POST, files=request.FILES)
-        if user_form.is_valid() and profile_form.is_valid() and relation_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            relation_form.save()
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
