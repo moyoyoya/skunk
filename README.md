@@ -1,4 +1,3 @@
-# skunk
 Django==1.10.5
 django-debug-toolbar==1.6
 django-extensions==1.7.5
@@ -15,3 +14,4 @@ six==1.10.0
 social-auth-app-django==0.1.0
 social-auth-core==0.2.1
 sqlparse==0.2.2
+django-countries
