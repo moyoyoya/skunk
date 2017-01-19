@@ -20,8 +20,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls), name='admin'),
-    url(r'^account/', include('account.urls')),
+    url(r'^account/', include('account.urls'), name='account'),
+    url(r'^$', include('subscription.urls'), name='subscription'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT )
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
