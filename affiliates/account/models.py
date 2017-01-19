@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+import random
 import datetime
 # Create your models here.
 
@@ -25,20 +26,23 @@ class Profile(models.Model):
 
 
 class Relation(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    ad_space = models.IntegerField(unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ad_space = models.IntegerField(max_length=3, unique=True)
 
 """
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
         Relation.objects.create(user=instance)
+counter = 1000
+@receiver(post_save, sender=User)
+def make_adspace(instance):
+    q = random.randint(1000,10000)
+    p = Relation()
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
     instance.relation.save()
 
 """

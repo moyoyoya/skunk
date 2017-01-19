@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, UserRegistrationForm, ProfileForm, RelationForm, UserForm
 from .models import Profile
+from django.contrib import messages
 
 # Create your views here.
 
@@ -36,28 +37,33 @@ def dashboard(request):
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
+        profile_form = ProfileForm(request.POST, instance=Profile)
+        if user_form.is_valid() and profile_form.is_valid():
             # Create a new user without saving it
             new_user = user_form.save(commit=False)
             #add password
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
-            Profile.objects.create(user=new_user)
-            return render(request, 'account/register_done.html', {'new_user': new_user})
+            profile_form.save(commit=False)
+            profile_form.user = new_user
+            profile_form.save()
+            return render(request, 'account/register_done.html', {'new_user': new_user, 'profile_form': profile_form})
     else:
         user_form = UserRegistrationForm()
-    return render(request, 'account/register.html', {'user_form': user_form})
+        profile_form = ProfileForm(instance=Profile())
+    return render(request, 'account/register.html', {'user_form': user_form, 'profile_form': profile_form})
 
 @login_required
 def edit(request):
     if request.method == 'POST':
         user_form = UserForm(instance=request.user, data=request.POST)
         profile_form = ProfileForm(instance=request.user.profile, data=request.POST, files=request.FILES)
+        relation_form = RelationForm()
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
         else:
-            print 'taco'
+            messages.error(request, 'Error updating your profile')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
