@@ -4,11 +4,16 @@
 
 {% block content %}
     <h1>Create an account</h1>
-    <p>Please sign up using the following form: </p>
+    <h2>Please sign up using the following form to provide us detailed information about your website
+    and/or your company, including payment details. Note that the failure to fill up this form will
+    result in rejection of your request to Linio's Affiliates program</h2>
+    <p>* All fields are mandatory</p>
     <form action="." method="post">
         {{ user_form.as_p }}
         {{ profile_form.as_p }}
+        {{ information_form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Create my account"</p>
+        <p><input type="submit" value="Create my account"></p>
     </form>
+
 {% endblock content %}

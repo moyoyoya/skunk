@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Relation
+from .models import Profile, Relation, Information
 
 
 class LoginForm(forms.Form):
@@ -29,6 +29,11 @@ class ProfileForm(forms.ModelForm):
         fields = ('company_name', 'address', 'country')
         exclude = ('user',)
 
+
+class InformationForm(forms.ModelForm):
+    class Meta:
+        model = Information
+        exclude = ('user',)
 
 class RelationForm(forms.ModelForm):
     class Meta:

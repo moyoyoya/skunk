@@ -21,7 +21,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls), name='admin'),
     url(r'^account/', include('account.urls'), name='account'),
-    url(r'^$', include('subscription.urls'), name='subscription'),
 ]
 
 if settings.DEBUG:

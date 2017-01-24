@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django_countries'
+    'django_countries',
 ]
 
 AUTHENTICATION_BACKENDS = (
