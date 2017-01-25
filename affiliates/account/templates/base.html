@@ -5,7 +5,7 @@
         <title>{% block title %} {% endblock title %} </title>
         <link href="{% static 'css/base.css' %}" rel="stylesheet">
     </head>
-    <body>
+    <div>
         <div id="header">
             <span class="logo">Affiliates</span>
             {% if request.user.is_authenticated %}
@@ -17,7 +17,7 @@
                     <a hrer="#">Admedia</a>
                     </li>
                     <li {% if section == "Deeplink" %}class="selected"{% endif %}>
-                    <a href="#">Deeplink</a>
+                    <a href="">Deeplink</a>
                     </li>
                     <li {% if section == 'dashboard' %}class="'selected{% endif %}">
                     <a href="{% url 'edit' %}">Profile</a>
@@ -47,5 +47,7 @@
             {% block content %}
             {% endblock content %}
         </div>
-    </body>
+    <div class="footer">
+        {% block bottom %} {% endblock bottom %}
+    </div>
 </html>
