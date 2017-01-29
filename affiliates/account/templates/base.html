@@ -17,7 +17,7 @@
                     <a hrer="#">Admedia</a>
                     </li>
                     <li {% if section == "Deeplink" %}class="selected"{% endif %}>
-                    <a href="">Deeplink</a>
+                    <a href="{% url 'deeplink' %}">Deeplink</a>
                     </li>
                     <li {% if section == 'dashboard' %}class="'selected{% endif %}">
                     <a href="{% url 'edit' %}">Profile</a>

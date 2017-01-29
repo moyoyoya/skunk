@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'account',
+    'media',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django_countries',
+    'crispy_forms',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -63,7 +65,9 @@ ROOT_URLCONF = 'affiliates.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/home/ulises/Linio/django/env/skunk/affiliates/account/templates/account',
+                 '/home/ulises/Linio/django/env/skunk/affiliates/account/templates/registration',
+                 '/home/ulises/Linio/django/env/skunk/affiliates/media/templates/adserving'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
     },
 ]
